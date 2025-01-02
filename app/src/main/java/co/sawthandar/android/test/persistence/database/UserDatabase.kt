@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import co.sawthandar.android.test.persistence.dao.UserDao
 import co.sawthandar.android.test.persistence.entity.UserEntity
 
-@Database(entities = [UserEntity::class], version = 1)
+@Database(entities = [UserEntity::class], version = 1, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
@@ -21,7 +21,7 @@ abstract class UserDatabase : RoomDatabase() {
                     context.applicationContext,
                     UserDatabase::class.java,
                     "user_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 instance
             }

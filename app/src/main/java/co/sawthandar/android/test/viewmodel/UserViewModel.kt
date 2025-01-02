@@ -31,9 +31,9 @@ class UserViewModel(private val userDao: UserDao) : ViewModel() {
         }
     }
 
-    fun deleteUser(user: UserEntity) {
+    fun deleteUser(userId: Int) {
         viewModelScope.launch {
-            userDao.deleteUser(user)
+            userDao.deleteUserById(userId)
         }
     }
 }
