@@ -8,9 +8,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import co.sawthandar.android.test.persistence.entity.UserEntity
+import co.sawthandar.android.test.viewmodel.UserViewModel
 
 @Composable
-fun UserInputScreen() {
+fun UserInputScreen(viewModel: UserViewModel) {
     var firstname = remember { mutableStateOf("") }
     var lastname = remember { mutableStateOf("") }
     var email = remember { mutableStateOf("") }
@@ -42,7 +44,8 @@ fun UserInputScreen() {
 
         Button(
             onClick = {
-
+                val user = UserEntity(firstname = firstname.value, lastname = lastname.value, email = email.value)
+                viewModel.addUser(user)
             },
             modifier = Modifier.fillMaxWidth()
         ) {
